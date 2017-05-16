@@ -48,7 +48,7 @@ namespace TennisTests
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.RafaWinPoint();
-            Assert.AreEqual("advantage rafa", score.RafaGameScore.Points);
+            Assert.AreEqual("advantage rafa", score.Score);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace TennisTests
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.RafaWinPoint();
-            Assert.AreEqual("game rafa", score.RafaGameScore.Points);
+            Assert.AreEqual("game rafa", score.Score);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace TennisTests
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.JokoWinPoint();
-            Assert.AreEqual("deuce", score.RafaGameScore.Points);
+            Assert.AreEqual("deuce", score.Score);
         }
     }
 }

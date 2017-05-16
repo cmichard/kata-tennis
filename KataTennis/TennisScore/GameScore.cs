@@ -11,6 +11,18 @@ namespace TennisScore
     /// </summary>
     public class GameScore
     {
+        /// <summary>
+        /// Create a new instance of <c>GameScore</c>.
+        /// </summary>
+        public GameScore()
+        {
+            this.RafaGameScore = new PlayerGameScore();
+            this.JokoGameScore = new PlayerGameScore();
+        }
+
+        /// <summary>
+        /// Game current score.
+        /// </summary>
         public string Score { get; private set; }
 
         /// <summary>
@@ -28,7 +40,21 @@ namespace TennisScore
         /// </summary>
         public void RafaWinPoint()
         {
+            if (this.Score == "advantage joko")
+            {
+                this.Score = "deuce";
+            }
+            else if (this.Score == "deuce")
+            {
+                this.Score = "advantage rafa";
+            }
+            else
+            {
+                this.RafaGameScore.Win();
+                this.CheckDeuce();
+            }
 
+            this.CheckGame();
         }
 
         /// <summary>
@@ -36,7 +62,41 @@ namespace TennisScore
         /// </summary>
         public void JokoWinPoint()
         {
+            if (this.Score == "advantage rafa")
+            {
+                this.Score = "deuce";
+            }
+            else if (this.Score == "deuce")
+            {
+                this.Score = "advantage joko";
+            }
+            else
+            {
+                this.JokoGameScore.Win();
+                this.CheckDeuce();
+            }
 
+            this.CheckGame();
+        }
+
+        private void CheckGame()
+        {
+            if (this.RafaGameScore.Points == "game")
+            {
+                this.Score = "game rafa";
+            }
+            else if (this.JokoGameScore.Points == "game")
+            {
+                this.Score = "game joko";
+            }
+        }
+
+        private void CheckDeuce()
+        {
+            if (this.RafaGameScore.Points == "40" && this.JokoGameScore.Points == "40")
+            {
+                this.Score = "deuce";
+            }
         }
     }
 }
