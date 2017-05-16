@@ -11,6 +11,11 @@ namespace TennisScore
     /// </summary>
     public class PlayerGameScore
     {
+        public PlayerGameScore()
+        {
+            this.Points = "0";
+        }
+
         /// <summary>
         /// Player game points.
         /// </summary>
@@ -21,7 +26,26 @@ namespace TennisScore
         /// </summary>
         public void Win()
         {
-
+            if (this.Points == "0")
+            {
+                this.Points = "15";
+            }
+            else if (this.Points == "15")
+            {
+                this.Points = "30";
+            }
+            else if (this.Points == "30")
+            {
+                this.Points = "40";
+            }
+            else if (this.Points == "40")
+            {
+                this.Points = "game";
+            }
+            else
+            {
+                throw new InvalidOperationException(string.Format("Unexpected game points {0}", this.Points));
+            }
         }
     }
 }
