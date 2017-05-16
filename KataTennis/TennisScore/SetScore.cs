@@ -12,8 +12,20 @@ namespace TennisScore
     public class SetScore
     {
         private GameScore currentGameScore;
-        private bool isTieBreak;
+        private bool isTieBreak
+        {
+            get
+            {
+                return this.RafaGamesWon == 6 && this.JokoGamesWon == 6;
+            }
+        }
 
+        private int rafaTieBreakPoints;
+        private int jokoTieBreakPoints;
+
+        /// <summary>
+        /// Create a new instance of <c>SetScore</c>.
+        /// </summary>
         public SetScore()
         {
             this.currentGameScore = new GameScore();
@@ -40,12 +52,20 @@ namespace TennisScore
         /// </summary>
         public void RafaWinPoint()
         {
-            this.currentGameScore.RafaWinPoint();
-            if (this.currentGameScore.RafaGameScore.Points == "game")
+            if (this.isTieBreak)
             {
-                this.RafaGamesWon++;
-                this.currentGameScore = new GameScore();
-                this.UpdateScore();
+                this.rafaTieBreakPoints++;
+                this.CheckTieBreak();
+            }
+            else
+            {
+                this.currentGameScore.RafaWinPoint();
+                if (this.currentGameScore.RafaGameScore.Points == "game")
+                {
+                    this.RafaGamesWon++;
+                    this.currentGameScore = new GameScore();
+                    this.UpdateScore();
+                }
             }
         }
 
@@ -54,12 +74,20 @@ namespace TennisScore
         /// </summary>
         public void JokoWinPoint()
         {
-            this.currentGameScore.JokoWinPoint();
-            if (this.currentGameScore.JokoGameScore.Points == "game")
+            if (isTieBreak)
             {
-                this.JokoGamesWon++;
-                this.currentGameScore = new GameScore();
-                this.UpdateScore();
+                this.jokoTieBreakPoints++;
+                this.CheckTieBreak();
+            }
+            else
+            {
+                this.currentGameScore.JokoWinPoint();
+                if (this.currentGameScore.JokoGameScore.Points == "game")
+                {
+                    this.JokoGamesWon++;
+                    this.currentGameScore = new GameScore();
+                    this.UpdateScore();
+                }
             }
         }
 
@@ -84,6 +112,22 @@ namespace TennisScore
             else
             {
                 this.Score = string.Format("{0}-{1}", this.RafaGamesWon, this.JokoGamesWon);
+            }
+        }
+
+        private void CheckTieBreak()
+        {
+            if (this.rafaTieBreakPoints >= 6 && this.rafaTieBreakPoints > this.jokoTieBreakPoints - 1)
+            {
+                this.Score = "set rafa";
+            }
+            else if (this.jokoTieBreakPoints >= 6 && this.jokoTieBreakPoints > this.rafaTieBreakPoints - 1)
+            {
+                this.Score = "set joko";
+            }
+            else
+            {
+                this.Score = string.Format("{0}-{1} ({2}-{3})", this.RafaGamesWon, this.JokoGamesWon, this.rafaTieBreakPoints, this.jokoTieBreakPoints);
             }
         }
     }
