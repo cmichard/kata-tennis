@@ -39,7 +39,8 @@ namespace TennisTests
             score.JokoWinPoint();
             score.JokoWinPoint();
             score.JokoWinPoint();
-            Assert.AreEqual("5-6", score.Score);
+            string actual = score.Score;
+            Assert.AreEqual("5-6", actual);
         }
 
         [TestMethod]
@@ -52,7 +53,7 @@ namespace TennisTests
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.RafaWinPoint();
-            Assert.AreEqual("game rafa", score.Score);
+            Assert.AreEqual("set rafa", score.Score);
         }
     }
 }

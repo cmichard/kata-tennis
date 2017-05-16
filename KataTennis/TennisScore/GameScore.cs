@@ -99,7 +99,7 @@ namespace TennisScore
             }
             else
             {
-                this.Score = string.Format("{0}-{0}", this.RafaGameScore.Points, this.JokoGameScore.Points);
+                this.Score = string.Format("{0}-{1}", this.RafaGameScore.Points, this.JokoGameScore.Points);
             }
         }
     }
