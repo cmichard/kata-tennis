@@ -12,6 +12,7 @@ namespace TennisScore
     public class SetScore
     {
         private GameScore currentGameScore;
+        private bool isTieBreak;
 
         public SetScore()
         {

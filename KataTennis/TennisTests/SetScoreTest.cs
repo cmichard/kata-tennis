@@ -48,12 +48,65 @@ namespace TennisTests
         {
             var score = new SetScore();
             score.RafaGamesWon = 6;
-            score.JokoGamesWon = 6;
+            score.JokoGamesWon = 5;
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.RafaWinPoint();
             score.RafaWinPoint();
             Assert.AreEqual("set rafa", score.Score);
+        }
+
+        [TestMethod]
+        public void ShouldTieBreakAtSixGamesAll()
+        {
+            var score = new SetScore();
+            score.RafaGamesWon = 6;
+            score.JokoGamesWon = 6;
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            Assert.AreNotEqual("set rafa", score.Score);
+        }
+
+        [TestMethod]
+        public void ShouldWinTieBreakAtSix()
+        {
+            var score = new SetScore();
+            score.RafaGamesWon = 6;
+            score.JokoGamesWon = 6;
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            score.RafaWinPoint();
+            Assert.AreNotEqual("set rafa", score.Score);
+            score.RafaWinPoint();
+            Assert.AreEqual("set rafa", score.Score);
+        }
+
+        [TestMethod]
+        public void ShouldWinTieBreakWithTwoPointsDifference()
+        {
+            var score = new SetScore();
+            score.RafaGamesWon = 6;
+            score.JokoGamesWon = 6;
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.RafaWinPoint();
+            score.JokoWinPoint();
+            score.JokoWinPoint();
+            Assert.AreEqual("set joko", score.Score);
         }
     }
 }
