@@ -97,6 +97,10 @@ namespace TennisScore
             {
                 this.Score = "deuce";
             }
+            else
+            {
+                this.Score = string.Format("{0}-{0}", this.RafaGameScore.Points, this.JokoGameScore.Points);
+            }
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="GameScoreTest.cs" />
     <Compile Include="PlayerGameScoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetScoreTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
