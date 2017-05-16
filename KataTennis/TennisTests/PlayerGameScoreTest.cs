@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TennisScore;
 
-namespace TennisTests
+namespace TennisScore
 {
     [TestClass]
     public class PlayerGameScoreTest
@@ -9,31 +10,46 @@ namespace TennisTests
         [TestMethod]
         public void ShouldStartAtZero()
         {
-            Assert.Fail();
+            var playerPoints = new PlayerGameScore();
+            Assert.AreEqual("0", playerPoints.Points);
         }
 
         [TestMethod]
         public void ShouldGetFifteen()
         {
-            Assert.Fail();
+            var playerPoints = new PlayerGameScore();
+            playerPoints.Win();
+            Assert.AreEqual("15", playerPoints.Points);
         }
 
         [TestMethod]
         public void ShouldGetThirty()
         {
-            Assert.Fail();
+            var playerPoints = new PlayerGameScore();
+            playerPoints.Win();
+            playerPoints.Win();
+            Assert.AreEqual("30", playerPoints.Points);
         }
 
         [TestMethod]
         public void ShouldGetFourty()
         {
-            Assert.Fail();
+            var playerPoints = new PlayerGameScore();
+            playerPoints.Win();
+            playerPoints.Win();
+            playerPoints.Win();
+            Assert.AreEqual("40", playerPoints.Points);
         }
 
         [TestMethod]
         public void ShouldWin()
         {
-            Assert.Fail();
+            var playerPoints = new PlayerGameScore();
+            playerPoints.Win();
+            playerPoints.Win();
+            playerPoints.Win();
+            playerPoints.Win();
+            Assert.AreEqual("game", playerPoints.Points);
         }
     }
 }
